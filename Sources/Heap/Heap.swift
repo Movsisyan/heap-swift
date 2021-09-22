@@ -56,7 +56,11 @@ private extension Heap {
   }
   
   mutating func heapifyUp() {
-    // TODO: - Implement heapifyUp
+    var index = items.count - 1
+    while hasParent(index) && parent(index) > items[index] {
+      swapElementsAtIndexes(parentIndex(index), index)
+      index = parentIndex(index)
+    }
   }
   
   func hasLeftChild(_ index: Int) -> Bool {
