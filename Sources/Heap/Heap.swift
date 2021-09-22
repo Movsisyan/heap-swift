@@ -2,6 +2,10 @@ public struct Heap<Element: Comparable> {
   
   private var items = [Element]()
   
+  public var peek: Element? {
+    items.first
+  }
+  
   private func hasLeftChild(_ index: Int) -> Bool {
     leftChildIndex(index) < items.count
   }
@@ -42,6 +46,33 @@ public struct Heap<Element: Comparable> {
     let temp = items[indexOne]
     items[indexOne] = items[indexTwo]
     items[indexTwo] = temp
+  }
+  
+  public mutating func poll() -> Element? {
+    if items.isEmpty {
+      return nil
+    }
+    
+    let item = items.first
+    let last = items.removeLast()
+    items[0] = last
+    
+    heapifyDown()
+    
+    return item
+  }
+  
+  private mutating func heapifyDown() {
+    // TODO: - Implement heapifyDown
+  }
+  
+  public mutating func push(_ item: Element) {
+    items.append(item)
+    heapifyUp()
+  }
+  
+  private mutating func heapifyUp() {
+    // TODO: - Implement heapifyUp
   }
   
  }
