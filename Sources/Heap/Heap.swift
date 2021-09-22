@@ -38,7 +38,21 @@ public struct Heap<Element: Comparable> {
 private extension Heap {
   
   mutating func heapifyDown() {
-    // TODO: - Implement heapifyDown
+    var index = 0
+    while hasLeftChild(index) {
+      var smalChildIndex = leftChildIndex(index)
+      if hasRightChild(index) && rightChild(index) < leftChild(index) {
+        smalChildIndex = rightChildIndex(index)
+      }
+      
+      if items[index] < items[smalChildIndex] {
+        break
+      } else {
+        swapElementsAtIndexes(index, smalChildIndex)
+      }
+      
+      index = smalChildIndex
+    }
   }
   
   mutating func heapifyUp() {
