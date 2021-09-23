@@ -10,12 +10,6 @@ public struct Heap<Element: Comparable> {
     items.isEmpty
   }
   
-  private mutating func swapElementsAtIndexes(_ indexOne: Int, _ indexTwo: Int) {
-    let temp = items[indexOne]
-    items[indexOne] = items[indexTwo]
-    items[indexTwo] = temp
-  }
-  
   public mutating func poll() -> Element? {
     if items.isEmpty {
       return nil
@@ -65,6 +59,12 @@ private extension Heap {
       swapElementsAtIndexes(parentIndex(index), index)
       index = parentIndex(index)
     }
+  }
+  
+  mutating func swapElementsAtIndexes(_ indexOne: Int, _ indexTwo: Int) {
+    let temp = items[indexOne]
+    items[indexOne] = items[indexTwo]
+    items[indexTwo] = temp
   }
   
   func hasLeftChild(_ index: Int) -> Bool {
