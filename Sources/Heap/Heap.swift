@@ -14,7 +14,7 @@ public struct Heap<Element: Comparable> {
     items.isEmpty
   }
   
-  public mutating func poll() -> Element? {
+  public mutating func pop() -> Element? {
     if items.isEmpty {
       return nil
     }
