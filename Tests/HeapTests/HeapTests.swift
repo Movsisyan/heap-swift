@@ -45,6 +45,15 @@ final class HeapTests: XCTestCase {
   }
   
   func test_minHeapReturnItemsInOrder() {
+    checkIsValidMinHeap(items)
+  }
+  
+  func test_minHeapReturnItemsInOrder_withExtremes() {
+    let extremesInput = [Int.max, .max, .max, .zero, .zero, .zero, .min, .min, .min]
+    checkIsValidMinHeap(extremesInput)
+  }
+  
+  private func checkIsValidMinHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
     var heap = Heap<Int>()
     for item in items {
       heap.push(item)
