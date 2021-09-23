@@ -6,6 +6,10 @@ public struct Heap<Element: Comparable> {
     items.first
   }
   
+  public var count: Int {
+    items.count
+  }
+  
   public var isEmpty: Bool {
     items.isEmpty
   }
