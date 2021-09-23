@@ -30,4 +30,15 @@ final class HeapTests: XCTestCase {
     XCTAssertEqual(heap.count, 1, "The heap should contain one element")
     XCTAssertEqual(heap.peek, number)
   }
+  
+  func test_popElementOnHeapWithOneItem_heapShouldBeEmpty() {
+    var heap = Heap<Int>()
+    let number = 4
+    heap.push(number)
+    
+    let popedItem = heap.pop()
+    
+    XCTAssertTrue(heap.isEmpty, "The heap must be empty")
+    XCTAssertEqual(number, popedItem, "Poped item must be equal to the initially pushed one")
+  }
 }
