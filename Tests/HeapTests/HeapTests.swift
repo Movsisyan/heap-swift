@@ -71,6 +71,15 @@ final class HeapTests: XCTestCase {
   }
   
   func test_maxHeapReturnItemsInOrder() {
+    checkIsValidMaxHeap(self.items)
+  }
+  
+  func test_maxHeapReturnItemsInOrder_withExtremes() {
+    let extremesInput = [Int.min, .min, .min, .zero, .zero, .zero, .max, .max, .max]
+    checkIsValidMaxHeap(extremesInput)
+  }
+  
+  private func checkIsValidMaxHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
     var heap: Heap<Int> = Heap(isMinHeap: false)
     for item in items {
       heap.push(item)
