@@ -19,9 +19,13 @@ public struct Heap<Element: Comparable> {
       return nil
     }
     
+    if items.count == 1 {
+      return items.removeLast()
+    }
+    
     let item = items.first
     let last = items.removeLast()
-    items[0] = last
+    items[.zero] = last
     
     heapifyDown()
     
@@ -40,7 +44,7 @@ public struct Heap<Element: Comparable> {
 private extension Heap {
   
   mutating func heapifyDown() {
-    var index = 0
+    var index = Int.zero
     while hasLeftChild(index) {
       var smalChildIndex = leftChildIndex(index)
       if hasRightChild(index) && rightChild(index) < leftChild(index) {
@@ -80,7 +84,7 @@ private extension Heap {
   }
   
   func hasParent(_ index: Int) -> Bool {
-    parentIndex(index) >= 0
+    parentIndex(index) >= Int.zero
   }
   
   func leftChildIndex(_ index: Int) -> Int {
