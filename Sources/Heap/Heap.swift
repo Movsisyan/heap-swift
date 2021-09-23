@@ -6,6 +6,10 @@ public struct Heap<Element: Comparable> {
     items.first
   }
   
+  public var isEmpty: Bool {
+    items.isEmpty
+  }
+  
   private mutating func swapElementsAtIndexes(_ indexOne: Int, _ indexTwo: Int) {
     let temp = items[indexOne]
     items[indexOne] = items[indexTwo]
