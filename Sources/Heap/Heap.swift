@@ -1,6 +1,13 @@
 public struct Heap<Element: Comparable> {
   
   private var items = [Element]()
+  private let heapifyDownComparator: (Element, Element) -> Bool
+  private let heapifyUpComparator: (Element, Element) -> Bool
+  
+  init(isMinHeap: Bool = true) {
+    self.heapifyDownComparator = isMinHeap ? { $0 < $1 } : { $0 > $1 }
+    self.heapifyUpComparator = isMinHeap ? { $0 > $1 } : { $0 < $1 }
+  }
   
   public var peek: Element? {
     items.first
@@ -19,6 +26,7 @@ public struct Heap<Element: Comparable> {
       return nil
     }
     
+    // if items contain only one element just remove and return the last one
     if items.count == 1 {
       return items.removeLast()
     }
@@ -46,24 +54,25 @@ private extension Heap {
   mutating func heapifyDown() {
     var index = Int.zero
     while hasLeftChild(index) {
-      var smalChildIndex = leftChildIndex(index)
-      if hasRightChild(index) && rightChild(index) < leftChild(index) {
-        smalChildIndex = rightChildIndex(index)
+      var smallChildIndex = leftChildIndex(index)
+      
+      if hasRightChild(index) && heapifyDownComparator(rightChild(index), leftChild(index)) {
+        smallChildIndex = rightChildIndex(index)
       }
       
-      if items[index] < items[smalChildIndex] {
+      if heapifyDownComparator(items[index], items[smallChildIndex]) {
         break
       } else {
-        swapElementsAtIndexes(index, smalChildIndex)
+        swapElementsAtIndexes(index, smallChildIndex)
       }
       
-      index = smalChildIndex
+      index = smallChildIndex
     }
   }
   
   mutating func heapifyUp() {
     var index = items.count - 1
-    while hasParent(index) && parent(index) > items[index] {
+    while hasParent(index) && heapifyUpComparator(parent(index), items[index]) {
       swapElementsAtIndexes(parentIndex(index), index)
       index = parentIndex(index)
     }
