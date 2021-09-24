@@ -3,7 +3,7 @@ import XCTest
 
 final class HeapTests: XCTestCase {
   
-  private let items = [2, -9, 34, 10, 5, 1, 29, 6, -4, 0, 10, 10]
+  private let testInputItems = [2, -9, 34, 10, 5, 1, 29, 6, -4, 0, 10, 10]
   
   func test_containsNoElementOnInitialization() {
     let heap = Heap<Int>()
@@ -45,7 +45,7 @@ final class HeapTests: XCTestCase {
   }
   
   func test_minHeapReturnItemsInOrder() {
-    checkIsValidMinHeap(items)
+    checkIsValidMinHeap(testInputItems)
   }
   
   func test_minHeapReturnItemsInOrder_withExtremes() {
@@ -60,7 +60,7 @@ final class HeapTests: XCTestCase {
   }
   
   func test_maxHeapReturnItemsInOrder() {
-    checkIsValidMaxHeap(self.items)
+    checkIsValidMaxHeap(testInputItems)
   }
   
   func test_maxHeapReturnItemsInOrder_withExtremes() {
@@ -76,7 +76,7 @@ final class HeapTests: XCTestCase {
   
   private func checkIsValidMinHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
     var heap = Heap<Int>()
-    for item in items {
+    for item in testInputItems {
       heap.push(item)
     }
     
@@ -93,7 +93,7 @@ final class HeapTests: XCTestCase {
   
   private func checkIsValidMaxHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
     var heap: Heap<Int> = Heap(isMinHeap: false)
-    for item in items {
+    for item in testInputItems {
       heap.push(item)
     }
     
