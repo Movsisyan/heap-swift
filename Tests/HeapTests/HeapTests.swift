@@ -53,7 +53,7 @@ final class HeapTests: XCTestCase {
     checkIsValidMinHeap(extremesInput)
   }
   
-  func test_minHeapReturnItemsInOrder_againstRandomRangeOf1000Elements_threeTimesInARow() {
+  func test_minHeapReturnItemsInOrder_againstRandomInputOf1000Elements_threeTimesInARow() {
     for _ in 0..<2 {
       checkIsValidMinHeap(generateRandomSetOf1000Elements())
     }
@@ -66,6 +66,12 @@ final class HeapTests: XCTestCase {
   func test_maxHeapReturnItemsInOrder_withExtremes() {
     let extremesInput = [Int.min, .min, .min, .zero, .zero, .zero, .max, .max, .max]
     checkIsValidMaxHeap(extremesInput)
+  }
+  
+  func test_maxHeapReturnItemsInOrder_againstRandomInputOf1000Elements_threeTimesInARow() {
+    for _ in 0..<2 {
+      checkIsValidMaxHeap(generateRandomSetOf1000Elements())
+    }
   }
   
   private func checkIsValidMinHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
