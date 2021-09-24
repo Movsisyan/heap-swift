@@ -53,6 +53,21 @@ final class HeapTests: XCTestCase {
     checkIsValidMinHeap(extremesInput)
   }
   
+  func test_minHeapReturnItemsInOrder_againstRandomRangeOf1000Elements_threeTimesInARow() {
+    for _ in 0..<2 {
+      checkIsValidMinHeap(generateRandomSetOf1000Elements())
+    }
+  }
+  
+  func test_maxHeapReturnItemsInOrder() {
+    checkIsValidMaxHeap(self.items)
+  }
+  
+  func test_maxHeapReturnItemsInOrder_withExtremes() {
+    let extremesInput = [Int.min, .min, .min, .zero, .zero, .zero, .max, .max, .max]
+    checkIsValidMaxHeap(extremesInput)
+  }
+  
   private func checkIsValidMinHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
     var heap = Heap<Int>()
     for item in items {
@@ -70,15 +85,6 @@ final class HeapTests: XCTestCase {
     }
   }
   
-  func test_maxHeapReturnItemsInOrder() {
-    checkIsValidMaxHeap(self.items)
-  }
-  
-  func test_maxHeapReturnItemsInOrder_withExtremes() {
-    let extremesInput = [Int.min, .min, .min, .zero, .zero, .zero, .max, .max, .max]
-    checkIsValidMaxHeap(extremesInput)
-  }
-  
   private func checkIsValidMaxHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
     var heap: Heap<Int> = Heap(isMinHeap: false)
     for item in items {
@@ -94,5 +100,15 @@ final class HeapTests: XCTestCase {
       XCTAssertTrue(prevItem >= popedItem, "The previous item must always be greater than or equal to the new one in the max-heap")
       prevItem = popedItem
     }
+  }
+  
+  private func generateRandomSetOf1000Elements() -> [Int] {
+    var res = [Int]()
+    for _ in 0..<1000 {
+      // Making range small so there will be duplicates
+      res.append(Int.random(in: -100...100))
+    }
+    
+    return res
   }
 }
