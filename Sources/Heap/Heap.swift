@@ -4,7 +4,7 @@ public struct Heap<Element: Comparable> {
   private let heapifyDownComparator: (Element, Element) -> Bool
   private let heapifyUpComparator: (Element, Element) -> Bool
   
-  init(isMinHeap: Bool = true) {
+  public init(isMinHeap: Bool = true) {
     self.heapifyDownComparator = isMinHeap ? { $0 < $1 } : { $0 > $1 }
     self.heapifyUpComparator = isMinHeap ? { $0 > $1 } : { $0 < $1 }
   }
