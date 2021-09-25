@@ -21,6 +21,7 @@ public struct Heap<Element: Comparable> {
     items.isEmpty
   }
   
+  @discardableResult
   public mutating func pop() -> Element? {
     if items.isEmpty {
       return nil
