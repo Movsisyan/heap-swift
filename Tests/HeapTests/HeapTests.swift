@@ -75,10 +75,7 @@ final class HeapTests: XCTestCase {
   }
   
   private func checkIsValidMinHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
-    var heap = Heap<Int>()
-    for item in items {
-      heap.push(item)
-    }
+    var heap = Heap<Int>(items)
     
     var prevItem = Int.min
     while !heap.isEmpty {
@@ -92,10 +89,7 @@ final class HeapTests: XCTestCase {
   }
   
   private func checkIsValidMaxHeap(_ items: [Int], file: StaticString = #file, line: UInt = #line) {
-    var heap: Heap<Int> = Heap(isMinHeap: false)
-    for item in items {
-      heap.push(item)
-    }
+    var heap = Heap<Int>(items, isMinHeap: false)
     
     var prevItem = Int.max
     while !heap.isEmpty {
