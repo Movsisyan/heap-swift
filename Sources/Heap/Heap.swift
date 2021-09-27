@@ -9,6 +9,14 @@ public struct Heap<Element: Comparable> {
     self.heapifyUpComparator = isMinHeap ? { $0 > $1 } : { $0 < $1 }
   }
   
+  public init(_ input: [Element], isMinHeap: Bool = true) {
+    self.init(isMinHeap: isMinHeap)
+    
+    for num in input {
+      push(num)
+    }
+  }
+  
   public var peek: Element? {
     items.first
   }
